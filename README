@@ -1,10 +1,10 @@
-Note: this doc is a bit hard to read, you may read http://mingfai.ma/2010/08/29/riak-javascript-shell/ alternatively. My blog post doesn't cover Riak JavaScript client usage.
+Note: this doc is a bit hard to read, you may read http://mingfai.ma/2010/08/29/riak-javascript-shell/ . My blog post doesn't cover Riak JavaScript client usage.
 
 How to use?
 ===========
 - download the shell.html file and upload to any bucket
   curl http://github.com/mingfai/riak-shell/raw/master/shell.html > shell.html
-	curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html		
+  curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html		
   (change the url with your hostname, bucket name, and your preferred file name)
 		
 - access the your page, e.g. http://riak:8098/riak/admin/shell.html
@@ -48,7 +48,6 @@ Sample code - use Riak JavaScript Client
 		
 Reference
 ================
-This project uses JavaScript Shell (http://www.squarefree.com/shell/)
-Before you "install" the shell, you may try the shell without riak to see if you want to use a tool like this:
- - http://github.com/mingfai/jquery.shell
- 
+- This project uses JavaScript Shell (http://www.squarefree.com/shell/)
+- Before you "install" the shell, you may try the shell without riak to see if you want to use a tool like this: http://github.com/mingfai/jquery.shell
+- http://mingfai.ma/2010/08/29/riak-javascript-shell/
