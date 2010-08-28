@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>riak.shell demo</title>
+	  <link rel="stylesheet" href="http://github.com/mingfai/jquery.shell/raw/master/src/main/webapp/js/jquery.shell/jquery.shell.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+
+    <script src="http://hg.basho.com/riak-javascript-client/raw/24e213bb0f9e/json2.js" type="text/javascript"></script>
+    <script src="http://hg.basho.com/riak-javascript-client/raw/24e213bb0f9e/riak.js" type="text/javascript"></script>
+    
+    <script src="http://github.com/mingfai/jquery.shell/raw/master/src/main/webapp/js/jquery.shell/javascript.shell.js" type="text/javascript"></script>
+    <script src="http://github.com/mingfai/jquery.shell/raw/master/src/main/webapp/js/jquery.shell/jquery.shell.js" type="text/javascript"></script>
+    <script type="text/javascript" src="chrome://extensiondev/content/rdfhistory.js"></script>
+    <script type="text/javascript" src="chrome://extensiondev/content/chromeShellExtras.js"></script>    
+</head>
+
+<body>
+<div id="shell"></div>
+<script type="text/javascript">
+    $(document).ready(function(){ $('#shell').shell() })
+</script>  
+
+<div id="hint">
+	<p>How to use?</p>
+	<ul>
+		<li>download this page and upload to any riak bucket
+			<pre>				
+				curl -X PUT http://hk1:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @src/main/webapp/js/jquery/shell/shell.html
+			</pre>
+	</ul>
+</div>
+
+</body>
+</html>
+
