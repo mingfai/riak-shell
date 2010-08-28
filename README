@@ -2,49 +2,48 @@ Note: this doc is a bit hard to read, you may read http://mingfai.ma/2010/08/29/
 
 How to use?
 ===========
- 	- download the shell.html file and upload to any bucket
- 		curl http://github.com/mingfai/riak-shell/raw/master/shell.html > shell.html
-		curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html		
-		(change the url with your hostname, bucket name, and your preferred file name)
+- download the shell.html file and upload to any bucket
+  curl http://github.com/mingfai/riak-shell/raw/master/shell.html > shell.html
+	curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html		
+  (change the url with your hostname, bucket name, and your preferred file name)
 		
-	- access the your page, e.g. http://riak:8098/riak/admin/shell.html
+- access the your page, e.g. http://riak:8098/riak/admin/shell.html
 	
-	- the html uses some javascript and css files from the Internet. If you don't feel it is secure enough, just put them to your bucket and change the html.
+- the html uses some javascript and css files from the Internet. If you don't feel it is secure enough, just put them to your bucket and change the html.
 
 
 Sample code - use JQuery ajax directly
 ======================================
-	1. use JQuery Ajax API directly
-		$.get( 'http://riak:8098/riak/admin/shell.html', function( data ){ print( data ); });
+1. use JQuery Ajax API directly
+  $.get( 'http://riak:8098/riak/admin/shell.html', function( data ){ print( data ); });
 		
-		Screenshot: 
-		http://github.com/mingfai/riak-shell/blob/master/img/get-object.png
+	Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/get-object.png
 
-	2. list bucket
-	  $.getJSON('http://riak:8098/riak/admin', 'keys=true', function(data){ $(data.keys).each(function(i,key){ print(key) }) })
+2. list bucket
+  $.getJSON('http://riak:8098/riak/admin', 'keys=true', function(data){ $(data.keys).each(function(i,key){ print(key) }) })
 		
-		Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/list-bucket.png
+	Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/list-bucket.png
 		
-  3. map reduce
-  	$.post('http://riak:8098/mapred', '{"inputs":"admin", "query": [ {"map":{"language":"javascript","source":"function(v) { return [v]; }"}}]}', function(data){ $(data).each( function(i,d){ print( i + ': ' + d.bucket + '.' + d.key + '\t' + d.values[0].data.length) }) });
+3. map reduce
+ 	$.post('http://riak:8098/mapred', '{"inputs":"admin", "query": [ {"map":{"language":"javascript","source":"function(v) { return [v]; }"}}]}', function(data){ $(data).each( function(i,d){ print( i + ': ' + d.bucket + '.' + d.key + '\t' + d.values[0].data.length) }) });
   	
-  	Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/mapreduce.png
+	Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/mapreduce.png
   	
-  	note: the shell supports multiple line with shift enter, and you can use '\' for line escaping.
+ 	note: the shell supports multiple line with shift enter, and you can use '\' for line escaping.
 
 
 Sample code - use Riak JavaScript Client
 ========================================
-	1. basic
-		var riak = new RiakClient();
-		var bucket = new RiakBucket('admin', riak); // 'admin' is the bucket name
+1. basic
+	var riak = new RiakClient();
+	var bucket = new RiakBucket('admin', riak); // 'admin' is the bucket name
 
-	2. read an object
-		var bucket = new RiakBucket('admin', new RiakClient());
-		bucket.get('shell.html', function(status, object){  // use Shift-Enter for a line break
-			print( 'status: ' + status ); // print() is a command provided by JavaScript Shell
-			print( 'object: ' + object );
-		}
+2. read an object
+	var bucket = new RiakBucket('admin', new RiakClient());
+	bucket.get('shell.html', function(status, object){  // use Shift-Enter for a line break
+		print( 'status: ' + status ); // print() is a command provided by JavaScript Shell
+		print( 'object: ' + object );
+	}
 		
 		
 Reference
