@@ -8,8 +8,24 @@ How to use?
 	
 	- the html uses some javascript and css files from the Internet. If you don't feel it is secure enough, just put them to your bucket and change the html.
 
-Sample code
-	- read an object
+Sample code - use JQuery ajax directly
+	1. use JQuery Ajax API directly
+		$.get( 'http://riak:8098/riak/admin/shell.html', function( data ){ print( data ); });
+
+	2. list bucket
+	  $.getJSON('http://riak:8098/riak/admin', 'keys=true', function(data){ $(data.keys).each(function(i,key){ print(key) }) })
+
+  3. map reduce
+  	$.post('http://riak:8098/mapred', '{"inputs":"admin", "query": [ {"map":{"language":"javascript","source":"function(v) { return [v]; }"}}]}', function(data){ $(data).each( function(i,d){ print( i + ': ' + d.bucket + '.' + d.key + '\t' + d.values[0].data.length) }) });
+  	
+  	note: the shell supports multiple line with shift enter, and you can use '\' for line escaping.
+
+Sample code - use Riak JavaScript Client
+	1. basic
+		var riak = new RiakClient();
+		var bucket = new RiakBucket('admin', riak); // 'admin' is the bucket name
+
+	2. read an object
 		var bucket = new RiakBucket('admin', new RiakClient());
 		bucket.get('shell.html', function(status, object){  // use Shift-Enter for a line break
 			print( 'status: ' + status ); // print() is a command provided by JavaScript Shell
@@ -17,5 +33,5 @@ Sample code
 		}
 		
 
-Web-based Riak Shell
- - use JQuery Shell (http://github.com/mingfai/jquery.shell)
+Before you "install" the shell, you may try the shell without riak to see if you want to use a tool like this:
+ - http://github.com/mingfai/jquery.shell
