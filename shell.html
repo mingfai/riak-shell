@@ -17,30 +17,11 @@
 </head>
 
 <body>
-	<p>see README for usage instruction and sample.</p>
+	<p>see <a href="http://github.com/mingfai/riak-shell">README</a> for usage instruction and sample.</p>
 <div id="shell"></div>
 <script type="text/javascript">
     $(document).ready(function(){ $('#shell').shell() })
 </script>  
-
-<div id="hint" style="display:none">
-	<p>How to use?</p>
-	<ul>
-		<li>download this page and upload to any riak bucket
-			<pre>				
-				curl http://github.com/mingfai/riak-shell/raw/master/shell.html > shell.html
-				curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html
-				(change the url with your hostname, bucket name, and your preferred file name)
-			</pre>
-	</ul>
-</div>
-
-<div id="sample">
-	<pre>
-		var admin = new RiakBucket("admin", new RiakClient())
-		
-	</pre>
-</div>
 
 </body>
 </html>
