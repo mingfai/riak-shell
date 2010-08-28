@@ -11,12 +11,19 @@ How to use?
 Sample code - use JQuery ajax directly
 	1. use JQuery Ajax API directly
 		$.get( 'http://riak:8098/riak/admin/shell.html', function( data ){ print( data ); });
+		
+		Screenshot: 
+		http://github.com/mingfai/riak-shell/blob/master/img/get-object.png
 
 	2. list bucket
 	  $.getJSON('http://riak:8098/riak/admin', 'keys=true', function(data){ $(data.keys).each(function(i,key){ print(key) }) })
-
+		
+		Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/list-bucket.png
+		
   3. map reduce
   	$.post('http://riak:8098/mapred', '{"inputs":"admin", "query": [ {"map":{"language":"javascript","source":"function(v) { return [v]; }"}}]}', function(data){ $(data).each( function(i,d){ print( i + ': ' + d.bucket + '.' + d.key + '\t' + d.values[0].data.length) }) });
+  	
+  	Screenshot: http://github.com/mingfai/riak-shell/blob/master/img/mapreduce.png
   	
   	note: the shell supports multiple line with shift enter, and you can use '\' for line escaping.
 
