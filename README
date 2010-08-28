@@ -1,2 +1,21 @@
+How to use?
+ 	- download the shell.html file and upload to any bucket
+ 		curl http://github.com/mingfai/riak-shell/raw/master/shell.html > shell.html
+		curl -X PUT http://riak:8098/riak/admin/shell.html -H "Content-Type: text/html" --data-binary @shell.html		
+		(change the url with your hostname, bucket name, and your preferred file name)
+		
+	- access the your page, e.g. http://riak:8098/riak/admin/shell.html
+	
+	- the html uses some javascript and css files from the Internet. If you don't feel it is secure enough, just put them to your bucket and change the html.
+
+Sample code
+	- read an object
+		var bucket = new RiakBucket('admin', new RiakClient());
+		bucket.get('shell.html', function(status, object){  // use Shift-Enter for a line break
+			print( 'status: ' + status ); // print() is a command provided by JavaScript Shell
+			print( 'object: ' + object );
+		}
+		
+
 Web-based Riak Shell
  - use JQuery Shell (http://github.com/mingfai/jquery.shell)
